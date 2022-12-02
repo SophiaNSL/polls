@@ -4,7 +4,9 @@ from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
 
+
 from .models import Question, Choice
+from .forms import LoginForm
 
 
 # def index(request):
@@ -61,3 +63,10 @@ def vote(request, question_id):
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
         return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+
+def user_login(request):
+
+    form = LoginForm()
+    return render(request, 'polls/user_login.html', {
+        'form': form
+    })
